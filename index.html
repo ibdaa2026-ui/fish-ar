@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
-<title>تجربة الخط الجانبي</title>
+<title>الخط الجانبي في الأسماك</title>
 
 <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@ar-js-org/ar.js@3.4.7/aframe/build/aframe-ar.js"></script>
@@ -16,95 +16,247 @@ body{
   font-family:Arial,sans-serif;
 }
 
-#message{
+#info{
   position:fixed;
   top:15px;
   left:5%;
   width:90%;
   box-sizing:border-box;
-  padding:14px;
+  padding:12px 15px;
   border-radius:16px;
-  background:rgba(5,40,65,.88);
+  background:rgba(3,35,57,.88);
   color:white;
   text-align:center;
-  font-size:18px;
-  line-height:1.7;
   z-index:9999;
+  font-size:16px;
+  line-height:1.6;
+}
+
+#question{
+  position:fixed;
+  bottom:25px;
+  left:5%;
+  width:90%;
+  box-sizing:border-box;
+  padding:15px;
+  border-radius:18px;
+  background:rgba(255,255,255,.94);
+  color:#07304c;
+  text-align:center;
+  z-index:9999;
+  font-size:18px;
+  font-weight:bold;
+}
+
+#answer{
+  display:none;
+  margin-top:10px;
+  font-size:15px;
+  font-weight:normal;
+  line-height:1.6;
+}
+
+button{
+  margin-top:10px;
+  border:0;
+  border-radius:12px;
+  background:#087eae;
+  color:white;
+  padding:10px 18px;
+  font-size:16px;
 }
 </style>
 </head>
 
 <body>
 
-<div id="message">
+<div id="info">
 🐟 وجّه الكاميرا نحو علامة HIRO<br>
-وعند اكتشافها ستظهر السمكة فوقها
+راقب ما يحدث حول السمكة
 </div>
 
+<div id="question">
+ما الذي تستطيع السمكة استشعاره هنا؟
+<br>
+<button onclick="document.getElementById('answer').style.display='block';this.style.display='none';">
+اكشف التفسير
+</button>
+
+<div id="answer">
+<strong>الخط الجانبي</strong><br>
+يساعد السمكة على استشعار حركة الماء والاهتزازات والتغيرات القريبة من جسمها.
+<br><small>الموجات الظاهرة تمثيل بصري توضيحي.</small>
+</div>
+</div>
+
+
 <a-scene
-  embedded
-  vr-mode-ui="enabled:false"
-  renderer="antialias:true; alpha:true"
-  arjs="sourceType: webcam; facingMode: environment; debugUIEnabled:false;">
+embedded
+vr-mode-ui="enabled:false"
+renderer="antialias:true; alpha:true"
+arjs="sourceType:webcam; facingMode:environment; debugUIEnabled:false;">
 
-  <a-marker preset="hiro">
+<a-marker preset="hiro">
 
-    <!-- جسم السمكة -->
-    <a-sphere
-      position="0 0.65 0"
-      scale="0.85 0.38 0.35"
-      color="#3FA9F5">
-    </a-sphere>
+<!-- مجموعة السمكة كاملة -->
+<a-entity
+position="0 0.45 0"
+rotation="-90 0 0"
+scale="0.55 0.55 0.55">
 
-    <!-- الذيل -->
-    <a-cone
-      position="-0.95 0.65 0"
-      rotation="0 0 90"
-      radius-bottom="0.42"
-      radius-top="0"
-      height="0.65"
-      color="#1976D2">
-    </a-cone>
+<!-- الجسم -->
+<a-sphere
+scale="1.05 0.42 0.42"
+color="#2C9FDB"
+roughness="0.45">
+</a-sphere>
 
-    <!-- العين -->
-    <a-sphere
-      position="0.65 0.78 0.30"
-      radius="0.07"
-      color="black">
-    </a-sphere>
+<!-- مقدمة الرأس -->
+<a-sphere
+position="0.70 0 0"
+scale="0.48 0.36 0.36"
+color="#39AFE7">
+</a-sphere>
 
-    <!-- الخط الجانبي -->
-    <a-box
-      position="0 0.65 0.34"
-      width="1.25"
-      height="0.035"
-      depth="0.025"
-      color="#00FFFF"
-      animation="property:material.opacity;
-                 from:0.25;
-                 to:1;
-                 dur:650;
-                 dir:alternate;
-                 loop:true">
-    </a-box>
+<!-- الذيل -->
+<a-cone
+position="-1.05 0 0"
+rotation="0 0 90"
+radius-bottom="0.55"
+radius-top="0"
+height="0.70"
+color="#167FAF">
+</a-cone>
 
-    <!-- موجات توضيحية -->
-    <a-torus
-      position="1.35 0.65 0"
-      rotation="90 0 0"
-      radius="0.28"
-      radius-tubular="0.018"
-      color="#00E5FF"
-      animation="property:scale;
-                 from:0.4 0.4 0.4;
-                 to:1.8 1.8 1.8;
-                 dur:1300;
-                 loop:true">
-    </a-torus>
+<!-- الزعنفة العلوية -->
+<a-cone
+position="-0.05 0.43 0"
+rotation="0 0 180"
+radius-bottom="0.27"
+radius-top="0"
+height="0.48"
+color="#177FAF">
+</a-cone>
 
-  </a-marker>
+<!-- الزعنفة السفلية -->
+<a-cone
+position="-0.15 -0.38 0"
+radius-bottom="0.20"
+radius-top="0"
+height="0.35"
+color="#177FAF">
+</a-cone>
 
-  <a-entity camera></a-entity>
+<!-- العين اليمنى -->
+<a-sphere
+position="0.82 0.13 0.31"
+radius="0.09"
+color="white">
+</a-sphere>
+
+<a-sphere
+position="0.86 0.13 0.37"
+radius="0.045"
+color="#111">
+</a-sphere>
+
+<!-- العين اليسرى -->
+<a-sphere
+position="0.82 0.13 -0.31"
+radius="0.09"
+color="white">
+</a-sphere>
+
+<a-sphere
+position="0.86 0.13 -0.37"
+radius="0.045"
+color="#111">
+</a-sphere>
+
+<!-- الخط الجانبي المضيء -->
+<a-box
+position="-0.05 0 0.43"
+width="1.55"
+height="0.035"
+depth="0.025"
+color="#00FFFF"
+material="emissive:#00FFFF; emissiveIntensity:1; opacity:.9"
+animation="property:material.emissiveIntensity;
+from:.2;
+to:2;
+dur:600;
+dir:alternate;
+loop:true">
+</a-box>
+
+</a-entity>
+
+
+<!-- مصدر اضطراب الماء -->
+<a-sphere
+position="1.25 0.40 0"
+radius="0.09"
+color="#FFB300"
+animation="property:position;
+from:1.25 0.35 0;
+to:1.25 0.55 0;
+dur:650;
+dir:alternate;
+loop:true">
+</a-sphere>
+
+
+<!-- موجة 1 -->
+<a-torus
+position="1.05 0.40 0"
+rotation="90 0 0"
+radius="0.12"
+radius-tubular="0.015"
+color="#00E5FF"
+material="transparent:true;opacity:.9"
+animation="property:scale;
+from:.3 .3 .3;
+to:2.2 2.2 2.2;
+dur:1600;
+loop:true">
+</a-torus>
+
+<!-- موجة 2 -->
+<a-torus
+position="1.05 0.40 0"
+rotation="90 0 0"
+radius="0.12"
+radius-tubular="0.015"
+color="#00E5FF"
+material="transparent:true;opacity:.65"
+animation="property:scale;
+from:.3 .3 .3;
+to:2.2 2.2 2.2;
+dur:1600;
+delay:550;
+loop:true">
+</a-torus>
+
+<!-- موجة 3 -->
+<a-torus
+position="1.05 0.40 0"
+rotation="90 0 0"
+radius="0.12"
+radius-tubular="0.015"
+color="#00E5FF"
+material="transparent:true;opacity:.4"
+animation="property:scale;
+from:.3 .3 .3;
+to:2.2 2.2 2.2;
+dur:1600;
+delay:1050;
+loop:true">
+</a-torus>
+
+
+</a-marker>
+
+<a-entity camera></a-entity>
 
 </a-scene>
 
