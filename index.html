@@ -1,129 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width,initial-scale=1,user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 
-  <title>الخط الجانبي - AR</title>
+<title>تجربة الخط الجانبي</title>
 
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.7/aframe/build/aframe-ar.min.js"></script>
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ar-js-org/ar.js@3.4.7/aframe/build/aframe-ar.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:Arial,sans-serif;
+}
 
-    #info {
-      position: fixed;
-      top: 18px;
-      left: 5%;
-      width: 90%;
-      z-index: 10;
-      background: rgba(3,35,57,.88);
-      color: white;
-      padding: 13px;
-      box-sizing: border-box;
-      border-radius: 14px;
-      text-align: center;
-      font-size: 16px;
-    }
-  </style>
+#message{
+  position:fixed;
+  top:15px;
+  left:5%;
+  width:90%;
+  box-sizing:border-box;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(5,40,65,.88);
+  color:white;
+  text-align:center;
+  font-size:18px;
+  line-height:1.7;
+  z-index:9999;
+}
+</style>
 </head>
 
 <body>
 
-<div id="info">
-🐟 وجّه الكاميرا نحو علامة HIRO
-<br>
-عند اكتشافها ستظهر السمكة فوقها
+<div id="message">
+🐟 وجّه الكاميرا نحو علامة HIRO<br>
+وعند اكتشافها ستظهر السمكة فوقها
 </div>
 
 <a-scene
   embedded
   vr-mode-ui="enabled:false"
-  renderer="logarithmicDepthBuffer:true"
-  arjs="sourceType: webcam; debugUIEnabled:false;">
+  renderer="antialias:true; alpha:true"
+  arjs="sourceType: webcam; facingMode: environment; debugUIEnabled:false;">
 
   <a-marker preset="hiro">
 
     <!-- جسم السمكة -->
     <a-sphere
-      position="0 0.6 0"
-      scale="0.95 0.48 0.42"
-      color="#4FAFE0">
+      position="0 0.65 0"
+      scale="0.85 0.38 0.35"
+      color="#3FA9F5">
     </a-sphere>
 
     <!-- الذيل -->
     <a-cone
-      position="-1 0.6 0"
+      position="-0.95 0.65 0"
       rotation="0 0 90"
-      radius-bottom="0.55"
+      radius-bottom="0.42"
       radius-top="0"
-      height="0.8"
-      color="#2479A8">
+      height="0.65"
+      color="#1976D2">
     </a-cone>
 
     <!-- العين -->
     <a-sphere
-      position="0.62 0.75 0.34"
-      radius="0.09"
-      color="white">
-    </a-sphere>
-
-    <a-sphere
-      position="0.66 0.76 0.405"
-      radius="0.04"
+      position="0.65 0.78 0.30"
+      radius="0.07"
       color="black">
     </a-sphere>
 
     <!-- الخط الجانبي -->
     <a-box
-      position="0 0.6 0.43"
-      width="1.35"
-      height="0.045"
+      position="0 0.65 0.34"
+      width="1.25"
+      height="0.035"
       depth="0.025"
       color="#00FFFF"
-      animation="
-        property: material.emissiveIntensity;
-        from: 0.2;
-        to: 2;
-        dur: 700;
-        dir: alternate;
-        loop: true">
+      animation="property:material.opacity;
+                 from:0.25;
+                 to:1;
+                 dur:650;
+                 dir:alternate;
+                 loop:true">
     </a-box>
 
     <!-- موجات توضيحية -->
     <a-torus
-      position="1.35 0.6 0"
+      position="1.35 0.65 0"
       rotation="90 0 0"
-      radius="0.25"
-      radius-tubular="0.025"
+      radius="0.28"
+      radius-tubular="0.018"
       color="#00E5FF"
-      animation="
-        property: scale;
-        from: 0.5 0.5 0.5;
-        to: 2 2 2;
-        dur: 1400;
-        loop: true">
-    </a-torus>
-
-    <a-torus
-      position="1.35 0.6 0"
-      rotation="90 0 0"
-      radius="0.25"
-      radius-tubular="0.025"
-      color="#00E5FF"
-      animation="
-        property: scale;
-        from: 0.5 0.5 0.5;
-        to: 2 2 2;
-        dur: 1400;
-        delay: 500;
-        loop: true">
+      animation="property:scale;
+                 from:0.4 0.4 0.4;
+                 to:1.8 1.8 1.8;
+                 dur:1300;
+                 loop:true">
     </a-torus>
 
   </a-marker>
