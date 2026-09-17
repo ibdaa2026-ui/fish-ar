@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تجربة الخط الجانبي</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#062b45;
+  color:white;
+  text-align:center;
+}
+main{
+  max-width:700px;
+  margin:auto;
+  padding:30px 18px;
+}
+.card{
+  background:white;
+  color:#06304d;
+  border-radius:25px;
+  padding:30px 20px;
+  margin-top:25px;
+}
+.fish{
+  font-size:90px;
+  animation:swim 2s ease-in-out infinite alternate;
+}
+@keyframes swim{
+  to{transform:translateX(35px)}
+}
+button{
+  border:0;
+  border-radius:15px;
+  padding:15px 25px;
+  font-size:18px;
+  background:#13a7d8;
+  color:white;
+}
+.note{
+  font-size:13px;
+  color:#607986;
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<h1>🐟 تجربة الخط الجانبي في الأسماك</h1>
+
+<p>
+نموذج تعليمي أولي تمهيدًا لتجربة الواقع المعزز
+</p>
+
+<div class="card">
+
+<div class="fish">🐟 〰️</div>
+
+<h2>ما الذي تستطيع السمكة استشعاره هنا؟</h2>
+
+<p>
+راقب حركة الماء والاهتزازات حول السمكة، ثم كوّن توقعك.
+</p>
+
+<button onclick="document.getElementById('answer').hidden=false">
+اكشف التفسير
+</button>
+
+<div id="answer" hidden>
+
+<h3>الخط الجانبي</h3>
+
+<p>
+يساعد السمكة على استشعار حركة الماء والاهتزازات
+والتغيرات القريبة من جسمها.
+</p>
+
+<p class="note">
+الموجات هنا تمثيل بصري توضيحي وليست موجات مرئية تراها السمكة.
+</p>
+
+</div>
+</div>
+
+</main>
+</body>
+</html>
